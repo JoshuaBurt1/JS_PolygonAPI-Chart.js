@@ -102,7 +102,10 @@ function chartGen() {
     var datapoints = [];
     var dates = [];
     var prices = [];
-    var apiUrl = `https://api.polygon.io/v2/aggs/ticker/${stockSymbol[i]}/range/1/day/2023-06-01/${formattedDate}?apiKey=${apiKey}`;
+    //LOCAL BUILD
+    //var apiUrl = `https://api.polygon.io/v2/aggs/ticker/${stockSymbol[i]}/range/1/day/2023-06-01/${formattedDate}?apiKey=${apiKey}`;
+    //GITHUB PAGES SECRET METHOD
+    var apiUrl = `https://api.polygon.io/v2/aggs/ticker/${stockSymbol[i]}/range/1/day/2023-06-01/${formattedDate}?apiKey=<API_KEY_PLACEHOLDER>`;
     // i does not iterate through fetch function, use different iteration counter through stock table/charts (fetchCount)
     var fetchCount = 0;
     fetch(apiUrl)
