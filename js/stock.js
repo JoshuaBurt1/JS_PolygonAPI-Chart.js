@@ -12,7 +12,11 @@ const formattedDate = formatDateToYearMonthDay(currentDate);
 //XNAS = NASDAQ stock exchange (includes NASDAQ-100)
 //TO-DO: multiple search options using API (exchanges, specific ticker, etc.)
 var stockList = [];
-const apiUrlSP = `https://api.polygon.io/v3/reference/tickers?type=CS&market=stocks&exchange=XNAS&active=true&limit=1000&sort=ticker&apiKey=${apiKey}`;
+//LOCAL BUILD
+//const apiUrlSP = `https://api.polygon.io/v3/reference/tickers?type=CS&market=stocks&exchange=XNAS&active=true&limit=1000&sort=ticker&apiKey=${API_KEY}`;
+//GITHUB PAGES SECRET METHOD
+const apiUrlSP = `https://api.polygon.io/v3/reference/tickers?type=CS&market=stocks&exchange=XNAS&active=true&limit=1000&sort=ticker&apiKey=<API_KEY_PLACEHOLDER>`;
+
 fetch(apiUrlSP)
   .then((response) => response.json())
   .then((data) => {

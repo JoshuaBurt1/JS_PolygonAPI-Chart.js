@@ -1,0 +1,29 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Run the job on the latest Ubuntu environment
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Inject the API key into the stock.js or index.html file
+      - name: Inject API key into stock.js or index.html
+        run: |
+          # If you want to replace the API key in stock.js (or index.html), use `sed` to inject it
+          echo "Injecting API key into stock.js"
+          sed -i 's|<YOUR_API_KEY_PLACEHOLDER>|${{ secrets.API_KEY }}|g' stock.js
+
+      # Step 3: Deploy to GitHub Pages using `gh-pages` branch
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.1.0
+        with:
+          branch: gh-pages  # Specify the gh-pages branch for GitHub Pages
+          folder: .  # Point to the root folder where index.html and stock.js are located
